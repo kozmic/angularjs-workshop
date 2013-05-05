@@ -1,1 +1,94 @@
-My GitHub Page
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>AngularJS Workshop</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+	<!--
+		To apply styles to the certain slides
+		set slide ID to get needed elements
+		-->
+	<style>
+		#First h2 {
+			margin:65px 0 0;
+			text-align:center;
+			font-size:70px;
+        }
+		#First p {
+			margin:10px 0 0;
+			text-align:center;
+			font-style:italic;
+			font-size:20px;
+        }
+        img.center {
+            margin-top: 150px;
+            display: block;
+            margin-left: auto; margin-right:
+            auto;
+        }
+
+	</style>
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>AngularJS Workshop</h1>
+		<p>Ståle Pettersen</p>
+	</header>
+
+	<section class="slide" id="First">
+        <img src="img/AngularJS-large.png" class="center" alt="">
+		<h2>AngularJS Workshop</h2>
+		<p>Ståle Pettersen / <a href="https://twitter.com/kozmic">@kozmic</a></p>
+	</section>
+
+	<section class="slide"><div>
+		<h2>Overview</h2>
+		<ol>
+			<li>AngularJS concepts and rules</li>
+			<li>Coding fun with AngularJS</li>
+		</ol>
+	</div></section>
+
+	<section class="slide shout"><div>
+		<h2>AngularJS is a drama queen!</h2>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Basic app</h2>
+        <code>angular.module('WorkshopApp', []);</code>
+        <br /><br />
+
+        <code>&lt;script src="js/lib/angular.min.js"/></code>
+        <br />
+        <code>&lt;div ng-app="WorkshopApp">&lt;/div></code>
+
+	</div></section>
+
+    <section class="slide">
+        <div>
+            <h2>Basic controller</h2>
+            <code>
+                WorkshopApp.controller('helloController', function($scope) {<br/>
+                    $scope.welcome = 'Hello world!';<br/>
+                });
+            </code>
+            <br /><br />
+            <code>
+                &lt;div ng-app="WorkshopApp"><br />
+                {{welcome}}<br />
+                &lt;/div>
+            </code>
+        </div>
+    </section>
+
+
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<!--div class="progress"><div></div></div-->
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
+</body>
+</html>
