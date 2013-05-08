@@ -19,6 +19,11 @@ Create an Hello World AngularJS application.
 2. Include [angular.js](http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js) from [http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js](http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js).
 3. Bootstrap AngularJS by adding a HTML-element with the ng-app attribute.
 
+### Name your application
+
+1. Give your Angular a name by setting the ng-app attribute value to the name of your application (should start with lower case). In the examples, `weatherApp` is used.
+2. Create a new Javascript file called app.js which declares the module `weatherApp`.
+3. Include `app.js` in `index.html`.
 
 
 
