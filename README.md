@@ -11,7 +11,7 @@ It does not include building a production ready application (concatination, mini
 ## Tasks
 
 
-### Your first AngularJS application
+### 1. Your first AngularJS application
 
 Create an Hello World AngularJS application.
 
@@ -19,11 +19,18 @@ Create an Hello World AngularJS application.
 2. Include [angular.js](http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js) from [http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js](http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js).
 3. Bootstrap AngularJS by adding a HTML-element with the ng-app attribute.
 
-### Name your application
+### 2. Name your application
 
 1. Give your Angular a name by setting the ng-app attribute value to the name of your application (should start with lower case). In the examples, `weatherApp` is used.
 2. Create a new Javascript file called app.js which declares the module `weatherApp`.
 3. Include `app.js` in `index.html`.
+
+### 3. Create a controller
+
+1. Create a controller in controller/WeatherController.js.
+2. Declare a $scope property.
+3. Update template to display the $scope property.
+
 
 
 
