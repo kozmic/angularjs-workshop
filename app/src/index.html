@@ -3,7 +3,7 @@
 <head>
     <title>Weather app</title>
     <!-- Remote to demo ngCloak -->
-<!--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>-->
+    <!--    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>-->
     <script type="text/javascript" src="lib/angular.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/controller/WeatherController.js"></script>
@@ -13,7 +13,19 @@
 <div ng-app="weatherApp">
 
     <div ng-controller="WeatherController">
-        {{heading}}
+        <h1>{{heading}}</h1>
+
+        <div class="searchContainer">
+
+            <form name="searchForm">
+                <fieldset>
+                    <legend>Search for weather in location</legend>
+                    <input id="search" type="text" ng-model="search.city" placeholder="City"/>
+                    <button type="submit" class="btn">Search for place</button>
+                </fieldset>
+            </form>
+
+        </div>
     </div>
 </div>
 

@@ -32,6 +32,11 @@ Create an Hello World AngularJS application.
 3. Update template to display the $scope property.
 
 
+### 4. Create search form without submit action
+
+1. Create a form with `ng-submit`.
+2. Create input field in form that is bound to scope in controller.
+
 
 
 
