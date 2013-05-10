@@ -76,7 +76,7 @@
 		<h2>Overview</h2>
 		<ol>
 			<li>
-				AngularJS concepts and rules
+				AngularJS stuff
 				<ul>
 					<li>
 						Tools
@@ -94,18 +94,13 @@
 						Forms
 					</li>
 					<li>
-						Directives
+						Directives & Filters
 					</li>
 					<li>
-						Dependency injection
-					</li>
-					<li>
-						Routing
+						Routing and more!
 					</li>
 				</ul>
 			</li>
-			<li>Coding AngularJS</li>
-            <li>GOTO 1</li>
 		</ol>
 	</div></section>
 
@@ -386,6 +381,7 @@
 				&lt;li ng-repeat="r in res | orderBy:'title':reverse | limitTo:10 | filter:query ">
 				&lt;p>{{r.title}} {{r.date}}&lt;/p>
 				&lt;/li>
+                <h1>{{ heading | uppercase }}</h1>
 			</pre>
 		</div>
 	</section>
@@ -522,7 +518,7 @@
 						$rootScope.$digest();
 						expect(angular.element(element.html()).attr('tabindex')).toEqual("1338");
 					});
-				});
+				    });
 					</pre>
 		</div>
 	</section>
@@ -532,7 +528,8 @@
 			<h2>$http</h2>
 			<p>Returns promise with success and error (no complete). Use <a href="http://docs.angularjs.org/api/ngResource.$resource">$resource</a> instead of <a href="http://docs.angularjs.org/api/ng.$http">$http</a>.</p>
 			<pre class="brush: js">
-				$http(config) // method, url, params, headers, transformers, cache, timeout
+                 // method, url, params, headers, transformers, cache, timeout
+				$http(config)
 
 				$http.get('/weather').success(successCallback);
 				$http.post('/weather', data).success(successCallback);
@@ -546,8 +543,11 @@
 			<p>Abstraction on top of $http, angular-resources.js is not bundled in angular.js.</p>
 			<p>First empty object/list, then backend result.</p>
 			<pre class="brush: js">
-				var WeatherService = $resource('/weather/:city',{ city: '@city' });
+                weatherApp.factory('WeatherService', function($resource) {
+				  return $resource('/weather/:city',{ city: '@city' });
+                }
 
+                weatherApp.controller('a', function($scope, WeatherService){}
 
 				WeatherService.get({city: 'Oslo'})   // GET, isArray=false
 				WeatherService.query({city: 'Oslo'}) // GET, isArray=true
@@ -672,16 +672,7 @@ weatherApp.config(function ($httpProvider) {
                     $decorate
                 </li>
                 <li>
-                    http interceptor
-                </li>
-                <li>
-                    tabindex directive
-                </li>
-                <li>
-                    mockServices
-                </li>
-                <li>
-                    ng-class example
+                    To typer directives.. egghead.io
                 </li>
             </ul>
         </div>
