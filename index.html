@@ -3,13 +3,22 @@
 <head>
 	<title>AngularJS Workshop</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=792, user-scalable=no">
+    <meta name="viewport" content="width=1024, user-scalable=no">
 	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
 	<!--
 		To apply styles to the certain slides
 		set slide ID to get needed elements
 		-->
 	<style>
+        .slide {
+            background: #fff;
+        }
+        .slide:after {
+            bottom: 25px;
+        }
+        .slide p {
+            margin: 0;
+        }
 		#First h2 {
 			margin:65px 0 0;
 			text-align:center;
@@ -21,11 +30,24 @@
 			font-style:italic;
 			font-size:20px;
         }
-        img.center {
+        #First img.center {
             margin-top: 150px;
+        }
+
+        img.center {
             display: block;
             margin-left: auto; margin-right:
             auto;
+        }
+        img.sidebyside {
+            width: 15em;
+            vertical-align: top;
+        }
+
+        p.source {
+            margin-top: 58%;
+            margin-left: 10%;
+            font-size: 12px;
         }
 
 	</style>
@@ -40,55 +62,392 @@
         <img src="img/AngularJS-large.png" class="center" alt="">
 		<h2>AngularJS Workshop</h2>
 		<p>Ståle Pettersen / <a href="https://twitter.com/kozmic">@kozmic</a></p>
+        <p>May 14th, 2013</p>
 	</section>
 
 	<section class="slide"><div>
 		<h2>Overview</h2>
 		<ol>
 			<li>AngularJS concepts and rules</li>
+            <ul>
+                <li>
+                    Tools
+                </li>
+                <li>
+                    Bootstrapping Angular
+                </li>
+                <li>
+                    Controllers
+                </li>
+                <li>
+                    Binding
+                </li>
+                <li>
+                    Forms
+                </li>
+                <li>
+                    Directives
+                </li>
+                <li>
+                    Dependency injection
+                </li>
+                <li>
+                    Routing
+                </li>
+            </ul>
 			<li>Coding AngularJS</li>
+            <li>GOTO 1</li>
 		</ol>
 	</div></section>
 
-	<section class="slide shout"><div>
-		<h2>AngularJS is a drama queen!</h2>
-	</div></section>
+    <section class="slide">
+        <div>
+            <h2>Disclaimer:</h2>
+            <h2>I consider myself an AngularJS n00b</h2>
+            <h2>...even with 8 months experience</h2>
+            <h2>...written thousands of AngularJS lines</h2>
+            <h2>...I learn something new each week</h2>
+        </div>
+    </section>
+
+    <section class="slide cover">
+        <img src="img/feelings_about_angularjs_over_time.png"/>
+        <p class="source"><a href="http://www.bennadel.com/blog/2439-My-Experience-With-AngularJS-The-Super-heroic-JavaScript-MVW-Framework.htm">Source: Ben Nadel</a></p>
+    </section>
+
+    <section class="slide shout"><div>
+        <h2>AngularJS is a drama queen!</h2>
+    </div></section>
 
     <section class="slide">
         <div>
-            <h2>I'm a AngularJS n00b, so please be nice with me :)</h2>
+            <h2>Tools</h2>
+            <ul>
+                <li>
+                    Chrome Extension: <a href="https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk">AngularJS Batarang</a>
+                </li>
+                <li>
+                    IntelliJ/WebStorm
+                </li>
+                <li>
+                    IntelliJ/WebStorm plugin: AngularJS
+                </li>
+                <li>
+                    Web server
+                    <ul>
+                        <li>
+                            python -m SimpleHTTPServer (or http.server if python 3)
+                        </li>
+                        <li>
+                            ruby -rwebrick -e'WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd).start'
+                        </li>
+                        <li>
+                            sudo npm install http-server -g && http-server
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </section>
+
+    <section class="slide">
+        <div>
+            <h2>MVC-ish</h2>
+            <table>
+                <tbody><tr>
+                    <td><strong>Model:</strong></td>
+                    <td>Plain Javascript</td>
+                </tr>
+                <tr>
+                    <td><strong>View:</strong></td>
+                    <td>HTML templates (including custom components) bound to model</td>
+                </tr>
+                <tr>
+                    <td><strong>Controller:</strong></td>
+                    <td>Sets model on <code>$scope</code> and watches for changes, in addition to exposing helper methods for view</td>
+                </tr>
+                </tbody></table>
+        </div>
+    </section>
+
+    <section class="slide"><div>
+        <h2>Hello world</h2>
+
+        <pre class="brush: html" title="HTML">
+            &lt;html ng-app>
+              &lt;script src="lib/angular.min.js"/>
+              &lt;h1>Hello world!&lt;/h1>
+            &lt;/html>
+        </pre>
+
+    </div></section>
 
 	<section class="slide"><div>
 		<h2>Basic app</h2>
-        <code>angular.module('WorkshopApp', []);</code>
-        <br /><br />
 
-        <code>&lt;script src="js/lib/angular.min.js"/></code>
-        <br />
-        <code>&lt;div ng-app="WorkshopApp">&lt;/div></code>
+        <pre class="brush: js" title="app.js">
+            angular.module('weatherApp', []);
+        </pre>
+
+        <pre class="brush: html" title="HTML">
+            &lt;script src="lib/angular.min.js"/>
+            &lt;script src="js/app.js"/>
+            &lt;div ng-app="weatherApp">&lt;/div>
+        </pre>
 
 	</div></section>
 
     <section class="slide">
         <div>
-            <h2>Basic controller</h2>
-            <p>View helper functions and glue between services</p>
-            <code>
-                WorkshopApp.controller('helloController', function($scope) {<br/>
-                    $scope.welcome = 'Hello world!';<br/>
+            <h2>Basic controller with binding</h2>
+            <p>Exposes data and helper functions to view</p>
+
+            <pre class="brush: js" title="controller/HelloController.js">
+                weatherApp.controller('HelloController', function($scope) {
+
+                    $scope.heading = 'Weather forecast';
+                    $scope.searchTerm = 'Oslo';
                 });
-            </code>
-            <br /><br />
-            <code>
-                &lt;div ng-app="WorkshopApp"><br />
-                {{welcome}}<br />
+            </pre>
+            <pre class="brush: html" title="HTML">
+                &lt;div ng-app="weatherApp">
+                    &lt;div ng-controller="HelloController">
+                        {{heading}}
+                        <form>
+                            <input ng-model="searchTem"/>
+                        </form>
+                    &lt;/div>
                 &lt;/div>
-            </code>
+            </pre>
         </div>
     </section>
 
+    <section class="slide">
+        <div>
+            <h2>Binding concepts</h2>
+            <img src="img/Two_Way_Data_Binding.png"/>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Binding examples (directives)</h2>
+            <pre class="brush: html">
+                &lt;h1>{{model}}&lt;/h1>
+                &lt;span ng-bind="model" /> &lt;-- ngCloak fix -->
+                &lt;input ng-model="model" />
+                &lt;div ng-bind-html="model" /> &lt;-- ngSanitize -->
+                &lt;div ng-bind-html-unsafe="model" /> &lt;-- ngSanitize -->
+                &lt;div ng-class="
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Built in directives</h2>
+            <pre class="brush: html">
+                &lt;li ng-repeat="result in results | orderBy:'title':reverse | limitTo:10 | filter:query ">
+                    &lt;p>{{result.title}} {{result.date}}&lt;/p>
+                &lt;/li>
+
+                &lt;div ng-show="searchResults">
+                    {{searchResults}}
+                &lt;/div>
+
+                &lt;div ng-include src="'templates/search.html'">&lt;/div>
+
+                &lt;ng-pluralize count="searchResults.length"
+                              when="{'0': 'No results.',
+                                   'one': 'Only one result for your search..',
+                                 'other': '{} results found.'}" />
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Scopes</h2>
+            <img src="img/Template_Model_View.png" />
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Forms</h2>
+            <pre class="brush: html">
+                <form novalidate name="weatherForm" ng-submit="submitForm()">
+                    <input name="city" type="input"
+                           placeholder="city"
+                           ng-model="weather.city"
+                           ng-required="true">
+
+                    <span ng-show="weatherForm.$errors.city.required">Required</span>
+
+                    <input type="radio" ng-model="weather.unit" value="celcius" ng/>Celcius
+                    <input type="radio" ng-model="weather.unit" value="fahrenheit" />fahrenheit<br />
+                </form>
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Example: Built in input directive</h2>
+            <pre class="brush: js">
+            &lt;input
+                ngModel="{string}"
+               [name="{string}"]
+               [required]
+               [ngRequired="{boolean}"]
+               [ngMinlength="{number}"]
+               [ngMaxlength="{number}"]
+               [ngPattern="{string}"]
+               [ngChange="{string}"] />
+            </pre>
+
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Customizing forms</h2>
+            <ul>
+                <li>
+                    Model to view: NgModelController#$formatters
+                </li>
+                <li>
+                    View to model: NgModelController#$parsers
+                </li>
+                <li>
+                    Directive
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Form validation directive</h2>
+            <pre class="brush: js">
+                var FLOAT_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
+                app.directive('smartFloat', function() {
+                  return {
+                    require: 'ngModel',
+                    link: function(scope, elm, attrs, ctrl) {
+                      ctrl.$parsers.unshift(function(viewValue) {
+                        if (FLOAT_REGEXP.test(viewValue)) {
+                          ctrl.$setValidity('float', true);
+                          return parseFloat(viewValue.replace(',', '.'));
+                        } else {
+                          ctrl.$setValidity('float', false);
+                          return undefined;
+                        }
+                      });
+                    }
+                  };
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Error handling</h2>
+            <p>Default implementation calls $log.error.</p>
+            <pre class="brush: js">
+                weatherApp.factory('$exceptionHandler', function($injector) {
+
+                    return function(exception, cause) {
+                        var http = $injector.get('$http');
+                        http.post('/errors', { error: exception });
+                    };
+                });
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>TODO</h2>
+            <ul>
+                <li>
+                    $decorate
+                </li>
+                <li>
+                    http interceptor
+                </li>
+                <li>
+                    tabindex directive
+                </li>
+                <li>
+                    mockServices
+                </li>
+                <li>
+                    ng-class example
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Dependency injection</h2>
+            <pre class="brush: js">
+                angualar.module('myModule', []).
+                config(function(depService){
+                    ...
+                }).
+                service('serviceName', function(depService) {
+                    ...
+                }).
+                factory('factoryName', function(depService) {
+                    ...
+                }).
+                directive('directiveName', function(depService) {
+                    ...
+                }).
+                filter('filterName', function(depService) {
+                    ...
+                }).
+                run(function(depService) {
+                    ...
+                });
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Routes</h2>
+            <pre class="brush: js">
+                angular.module('myRoutes', function($routeProvider, $locationProvider) {
+                    $routeProvider
+                        .when('/user/:userId', {
+                            templateUrl: 'user.html',
+                            controller: UserCtrl
+                        })
+
+                        .when('/user/:userId/card/:cardId', {
+                            templateUrl: 'card.html',
+                            controller: CardCtrl,
+                            resolve: {
+                                delay: function($q, $timeout) {
+                                    var delay = $q.defer();
+                                    $timeout(delay.resolve, 200);
+                                    return delay.promise;
+                                }
+                            }
+                        })
+
+                        .when('/404', { templateUrl: '404.html' });
+
+                        .otherwise( { redirectTo: '/404' });
+    
+                    $locationProvider.html5Mode(true);
+                });
+            </pre>
+        </div>
+    </section>
 
 	<!--
 		To hide progress bar from entire presentation
@@ -97,5 +456,25 @@
 	<!--div class="progress"><div></div></div-->
 	<script src="shower/shower.min.js"></script>
 	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
+
+    <!-- Include required JS files -->
+    <script type="text/javascript" src="js/shCore.js"></script>
+
+    <!--
+        At least one brush, here we choose JS. You need to include a brush for every
+        language you want to highlight
+    -->
+    <script type="text/javascript" src="js/shBrushJScript.js"></script>
+    <script type="text/javascript" src="js/shBrushXml.js"></script>
+
+    <!-- Include *at least* the core style and default theme -->
+    <link href="css/shCore.css" rel="stylesheet" type="text/css" />
+    <link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+
+    <!-- Finally, to actually run the highlighter, you need to include this JS on your page -->
+    <script type="text/javascript">
+        SyntaxHighlighter.defaults.toolbar = false;
+        SyntaxHighlighter.all();
+    </script>
 </body>
 </html>
