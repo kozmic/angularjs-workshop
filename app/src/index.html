@@ -7,7 +7,7 @@
     <link href="styles/weatherApp.css" rel="stylesheet" media="screen">
 
     <!-- Libs: -->
-    <script src="http://code.jquery.com/jquery.js"></script> <!-- Must be before angular -->
+    <script src="http://code.jquery.com/jquery.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/angular/angular.js"></script>
     <script type="text/javascript" src="lib/angular/angular-resource.js "></script>
@@ -15,6 +15,7 @@
     <!-- Weather application: -->
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/controller/WeatherController.js"></script>
+    <script type="text/javascript" src="js/service/WeatherService.js"></script>
 </head>
 <body>
 
@@ -26,18 +27,20 @@
         <div class="searchContainer">
 
             <form name="searchForm" class="form-inline" ng-submit="doSearch()">
-                <fieldset>
-                    <legend>Show weather for city</legend>
-                    <input id="search" type="text" ng-model="search.city" placeholder="City"/>
+                <div class="input-append">
+                    <input class="input-medium" name="city" type="text" ng-model="search.city" placeholder="City" ng-required="true"/>
                     <button type="submit" class="btn">Show weather</button>
-                </fieldset>
+                    <span ng-show="searchForm.city.$error.required && searchForm.city.$dirty">City is required</span>
+                </div>
             </form>
 
         </div>
 
         <div ng-show="searchResult">
             Temperature in {{searchResult.name}} is now {{searchResult.main.temp}} C.
-            <img ng-src="http://openweathermap.org/img/w/{{searchResult.weather[0].icon}}.png"/>
+            <img class="weather" ng-src="http://openweathermap.org/img/w/{{searchResult.weather[0].icon}}.png"/><br />
+            Country: {{searchResult.sys.country}}
+
         </div>
     </div>
 </div>

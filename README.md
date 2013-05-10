@@ -38,6 +38,10 @@ Create an Hello World AngularJS application.
 2. Create input field in form that is bound to scope in controller.
 
 
+### 5. Add validation
+1. Give your controller a name.
+2. Add a error message that is shown if the field is empty.
+
 
 
 
