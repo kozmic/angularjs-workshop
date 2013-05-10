@@ -14,11 +14,18 @@
             background: #fff;
         }
         .slide:after {
-            bottom: 25px;
+            display: none;
         }
         .slide p {
             margin: 0;
         }
+		.slide > div {
+			padding: 40px 70px 0;
+
+		}
+		.slide h2 {
+			margin: 0 0 20px;
+		}
 		#First h2 {
 			margin:65px 0 0;
 			text-align:center;
@@ -68,33 +75,35 @@
 	<section class="slide"><div>
 		<h2>Overview</h2>
 		<ol>
-			<li>AngularJS concepts and rules</li>
-            <ul>
-                <li>
-                    Tools
-                </li>
-                <li>
-                    Bootstrapping Angular
-                </li>
-                <li>
-                    Controllers
-                </li>
-                <li>
-                    Binding
-                </li>
-                <li>
-                    Forms
-                </li>
-                <li>
-                    Directives
-                </li>
-                <li>
-                    Dependency injection
-                </li>
-                <li>
-                    Routing
-                </li>
-            </ul>
+			<li>
+				AngularJS concepts and rules
+				<ul>
+					<li>
+						Tools
+					</li>
+					<li>
+						Bootstrapping Angular
+					</li>
+					<li>
+						Controllers
+					</li>
+					<li>
+						Binding
+					</li>
+					<li>
+						Forms
+					</li>
+					<li>
+						Directives
+					</li>
+					<li>
+						Dependency injection
+					</li>
+					<li>
+						Routing
+					</li>
+				</ul>
+			</li>
 			<li>Coding AngularJS</li>
             <li>GOTO 1</li>
 		</ol>
@@ -186,7 +195,7 @@
 		<h2>Basic app</h2>
 
         <pre class="brush: js" title="app.js">
-            angular.module('weatherApp', []);
+            var weatherApp = angular.module('weatherApp', []);
         </pre>
 
         <pre class="brush: html" title="HTML">
@@ -234,11 +243,16 @@
             <h2>Binding examples (directives)</h2>
             <pre class="brush: html">
                 &lt;h1>{{model}}&lt;/h1>
+
                 &lt;span ng-bind="model" /> &lt;-- ngCloak fix -->
+
                 &lt;input ng-model="model" />
+
                 &lt;div ng-bind-html="model" /> &lt;-- ngSanitize -->
+
                 &lt;div ng-bind-html-unsafe="model" /> &lt;-- ngSanitize -->
-                &lt;div ng-class="
+
+				&lt;CmsText data-key=helpText.name"/>
             </pre>
         </div>
     </section>
@@ -247,7 +261,7 @@
         <div>
             <h2>Built in directives</h2>
             <pre class="brush: html">
-                &lt;li ng-repeat="result in results | orderBy:'title':reverse | limitTo:10 | filter:query ">
+                &lt;li ng-repeat="result in results">
                     &lt;p>{{result.title}} {{result.date}}&lt;/p>
                 &lt;/li>
 
@@ -261,6 +275,10 @@
                               when="{'0': 'No results.',
                                    'one': 'Only one result for your search..',
                                  'other': '{} results found.'}" />
+
+				&lt;div ng-class="{answered: question.answer}">
+
+				&lt;h2 ng-show="title">{{title}}&lt;/h2>
             </pre>
         </div>
     </section>
@@ -276,17 +294,17 @@
         <div>
             <h2>Forms</h2>
             <pre class="brush: html">
-                <form novalidate name="weatherForm" ng-submit="submitForm()">
-                    <input name="city" type="input"
+                &lt;form novalidate name="weatherForm" ng-submit="submitForm()">
+                    &lt;input name="city" type="input"
                            placeholder="city"
                            ng-model="weather.city"
                            ng-required="true">
 
-                    <span ng-show="weatherForm.$errors.city.required">Required</span>
+                    &lt;span ng-show="weatherForm.$errors.city.required">Required&lt;/span>
 
-                    <input type="radio" ng-model="weather.unit" value="celcius" ng/>Celcius
-                    <input type="radio" ng-model="weather.unit" value="fahrenheit" />fahrenheit<br />
-                </form>
+                    &lt;input type="radio" ng-model="weather.unit" value="celcius" ng/>Celcius
+                    &lt;input type="radio" ng-model="weather.unit" value="fahrenheit" />fahrenheit&lt;
+                &lt;/form>
             </pre>
         </div>
     </section>
@@ -304,6 +322,7 @@
                [ngMaxlength="{number}"]
                [ngPattern="{string}"]
                [ngChange="{string}"] />
+
             </pre>
 
         </div>
@@ -350,6 +369,253 @@
         </div>
     </section>
 
+	<section class="slide">
+		<div>
+			<h2>Filters</h2>
+			<ul>
+				<li>currency</li>
+				<li>date</li>
+				<li>filter (search)</li>
+				<li>limitTo</li>
+				<li>lowercase</li>
+				<li>number</li>
+				<li>orderBy</li>
+				<li>json (debugging)</li>
+			</ul>
+			<pre class="brush: html">
+				&lt;li ng-repeat="r in res | orderBy:'title':reverse | limitTo:10 | filter:query ">
+				&lt;p>{{r.title}} {{r.date}}&lt;/p>
+				&lt;/li>
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Custom filters</h2>
+			<pre class="brush: js">
+			weatherApp.module('weatherFilters, [])
+
+			  .filter('appendPostfix',function(){
+					return function(value, postfix) {
+						return !!value ? value + postfix : value;
+					};
+			  })
+
+			  .filter('nl2br', function() {
+					return function(input) {
+						return ('' + input).split('\n').join('<br />');
+					};
+			  })
+			;
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Testing filters</h2>
+			<pre class="brush: js">
+			describe('weatherFilters', function() {
+
+			beforeEach(angular.mock.module('weatherFilters'));
+
+			describe('nl2br filter', function() {
+
+				it('should not modify string without a newline', inject(function($filter) {
+					var input = 'my input line.';
+					var nl2brFilter = $filter('nl2br')(input);
+					expect(nl2brFilter).toBe(input);
+				}));
+
+				it('should replace newlines with a br tag', inject(function($filter) {
+					var input = 'my input\n line.';
+					var nl2brFilter = $filter('nl2br')(input);
+					expect(nl2brFilter).toBe('my input<br /> line.');
+				}));
+			});
+			});
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Directive API</h2>
+					<pre class="brush: js">
+
+					</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Custom directive: DateFormatter</h2>
+			<pre class="brush: js">
+				// Example usage:
+				// &lt;p class="DateFormatter" data-dato="{{myDate}}" />
+				.directive('DateFormatter', function(DateUtilService) {
+					return {
+						replace: false
+						restrict: 'C',
+						link: function($scope, el, attrs) {
+							var inputFormat = attrs.inputFormat ? attrs.inputFormat : 'd.M.yyyy';
+							var outputFormat = attrs.outputFormat ? attrs.outputFormat : 'd. MMMM yyyy';
+
+							attrs.$observe('dato', function(dato) {
+								el.text(DateUtilService.convertFormat(dato, inputFormat, outputFormat));
+							});
+						}
+					};
+				})
+				;
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Custom directive</h2>
+			<pre class="brush: js">
+				weatherApp.module('weatherDirectives')
+
+				  .directive('waTabindex', function() {
+
+						return function(scope, element, attrs) { // link fn
+							scope.$watch(attrs.ngTabindex, function (newVal) {
+								element.attr('tabindex', newVal);
+							});
+						};
+					});
+			</pre>
+			<pre class="brush: html" title="Usage:">
+				&lt;input name="someInput" wa-tabindex="{{tabindex}}" />
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Testing directive</h2>
+					<pre class="brush: js">
+					describe("wa-tabindex directive test", function () {
+					var $compile, $rootScope, element;
+					beforeEach(angular.mock.module('weatherDirectives'));
+					beforeEach(inject(function ($c, $r) {
+							$compile = $c;
+							$rootScope = $r;
+						}
+					));
+
+					beforeEach(function () {
+						element = $compile('&lt;div>&lt;input wa-tabindex="index">&lt;/input>&lt;/div>')($rootScope);
+						$rootScope.tabindex = 1337;
+						$rootScope.$digest();
+					});
+
+					it("should write tabindex on initialization", function () {
+						expect(angular.element(element.html()).attr('tabindex')).toEqual("1337");
+					});
+
+					it("should update tabindex", function () {
+						$rootScope.tabindex = 1338;
+						$rootScope.$digest();
+						expect(angular.element(element.html()).attr('tabindex')).toEqual("1338");
+					});
+				});
+					</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>$http</h2>
+			<p>Returns promise with success and error (no complete). Use <a href="http://docs.angularjs.org/api/ngResource.$resource">$resource</a> instead of <a href="http://docs.angularjs.org/api/ng.$http">$http</a>.</p>
+			<pre class="brush: js">
+				$http(config) // method, url, params, headers, transformers, cache, timeout
+
+				$http.get('/weather').success(successCallback);
+				$http.post('/weather', data).success(successCallback);
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Resources</h2>
+			<p>Abstraction on top of $http, angular-resources.js is not bundled in angular.js.</p>
+			<p>First empty object/list, then backend result.</p>
+			<pre class="brush: js">
+				var WeatherService = $resource('/weather/:city',{ city: '@city' });
+
+
+				WeatherService.get({city: 'Oslo'})   // GET, isArray=false
+				WeatherService.query({city: 'Oslo'}) // GET, isArray=true
+				WeatherService.save(myWeather)       // POST
+				WeatherService.save({ city: 'Oslo' }, body)  // POST
+				WeatherService.remove(myWeather)     // DELETE
+				WeatherService.delete(myWeather)     // DELETE
+
+				// With callbacks, not typically used:
+				WeatherService.save(myWeather, succes, error)
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>CSRF token in all POST requests</h2>
+			<pre class="brush: js">
+			angular.module('csrfTokenSetup', [])
+				.config(function ($httpProvider) {
+					$httpProvider.defaults.headers.post['X-Requested-By'] = $('[name=csrf-token]').attr('content');
+				});
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Dev/Mock/Test $http/$resource</h2>
+			<p>Mock responses for development with mocked backeds (or testing)</p>
+			<pre class="brush: js" title="mockServices.js">
+			weatherAppDev = angular.module('weatherAppDev', ['weatherApp', 'ngMockE2E']);
+			weatherAppDev.run(function ($httpBackend) {
+
+				$httpBackend.whenGET('/weather\/\w*$').respond(window.weatherResult_Oslo);
+				$httpBackend.whenPOST('/weather$').respond(function (method, url, data, headers) {
+					if (angular.fromJson(data).weather.wind === 100) {
+						return ['500', '', ''];
+					} else {
+						return ['200', window.weatherResult_Oslo, ''];
+					}
+				});
+
+
+				$httpBackend.whenGET(/.*/).passThrough();
+				$httpBackend.whenPOST(/.*/).passThrough();
+			});
+			</pre>
+			<pre class="brush: html" title="Switch to mock:">
+				&lt;script src="mocks/mockServices.js">&lt;/script>
+				&lt;div ng-app="weatherAppDev"/> &lt;-- 'weatherApp' for no mocks -->
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Wrappers</h2>
+			<ul>
+				<li>$cookie (angularjs-cookie.js)</li>
+				<li>$window</li>
+				<li>$location ($locationChangeStart and $locationChangeSuccess)</li>
+				<li>$log</li>
+				<li>$timeout</li>
+			</ul>
+		</div>
+	</section>
+
     <section class="slide">
         <div>
             <h2>Error handling</h2>
@@ -365,6 +631,38 @@
             </pre>
         </div>
     </section>
+
+	<section class="slide">
+		<div>
+			<h2>Generic interceptor</h2>
+			<pre class="brush: js">
+weatherApp.config(function ($httpProvider) {
+	var errorInterceptor = function ($q, $location) {
+
+		function success(response) {
+			return response;
+		}
+
+		function error(response) {
+			if (response.status < 200 || response.status >= 400) {
+				$location.path("/error");
+				return $q.reject(response);
+			}
+		}
+
+		return function (promise) {
+			return promise.then(success, error);
+		};
+
+	};
+
+	$httpProvider.responseInterceptors.push(errorInterceptor);
+});
+
+			</pre>
+		</div>
+	</section>
+
 
     <section class="slide">
         <div>
@@ -421,33 +719,39 @@
             <h2>Routes</h2>
             <pre class="brush: js">
                 angular.module('myRoutes', function($routeProvider, $locationProvider) {
-                    $routeProvider
-                        .when('/user/:userId', {
-                            templateUrl: 'user.html',
-                            controller: UserCtrl
-                        })
+                  $routeProvider
+					.when('/weather', {
+					  templateUrl: 'search.html',
+					  controller: SearchCtrl
+					})
+					.when('/weather/:city', {
+						templateUrl: 'result.html',
+						controller: ResultCtrl
+					})
 
-                        .when('/user/:userId/card/:cardId', {
-                            templateUrl: 'card.html',
-                            controller: CardCtrl,
-                            resolve: {
-                                delay: function($q, $timeout) {
-                                    var delay = $q.defer();
-                                    $timeout(delay.resolve, 200);
-                                    return delay.promise;
-                                }
-                            }
-                        })
+					.when('/404', { templateUrl: '404.html' });
 
-                        .when('/404', { templateUrl: '404.html' });
-
-                        .otherwise( { redirectTo: '/404' });
+					.otherwise( { redirectTo: '/404' });
     
                     $locationProvider.html5Mode(true);
                 });
             </pre>
         </div>
     </section>
+
+	<section class="slide">
+		<div>
+			<h2>Listen on route change events</h2>
+			<pre class="brush: js">
+				weatherApp.run(function (TrackingService, $rootScope) {
+				  $rootScope.$on(
+					'$routeChangeStart',
+					TrackingService.trackEvent
+				  );
+				})
+			</pre>
+		</div>
+	</section>
 
 	<!--
 		To hide progress bar from entire presentation
