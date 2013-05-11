@@ -31,7 +31,7 @@
 
         <div class="searchContainer">
 
-            <form name="searchForm" class="form-inline" ng-submit="doSearch()">
+            <form name="searchForm" class="form-inline" ng-submit="doSearch()" novalidate>
                 <div class="input-append">
                     <input class="input-medium" name="city" type="text" ng-model="search.city" placeholder="City" ng-required="true"/>
                     <button type="submit" class="btn">Show weather</button>
