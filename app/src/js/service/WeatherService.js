@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('waServices', [])
+angular.module('waWeatherService', [])
 
     .factory('WeatherService', ['$resource', function ($resource) {
 
@@ -21,5 +21,4 @@ angular.module('waServices', [])
         );
 
     }])
-
 ;

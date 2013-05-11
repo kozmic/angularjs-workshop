@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('weatherApp', [
-    'waServices',
+    'waWeatherService',
+    'waSessionStore',
     'waControllers',
     'ngResource'
 ]);
