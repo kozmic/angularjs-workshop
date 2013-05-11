@@ -1,3 +1,7 @@
-var weatherApp = angular.module('weatherApp', [
+'use strict';
+
+angular.module('weatherApp', [
+    'waServices',
+    'waControllers',
     'ngResource'
 ]);

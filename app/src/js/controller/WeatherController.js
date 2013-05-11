@@ -1,13 +1,17 @@
-weatherApp.controller('WeatherController', ['$scope', 'WeatherService',
-    function ($scope, WeatherService) {
+'use strict';
 
-    $scope.heading = 'Awesome weather application';
+angular.module('waControllers', [])
 
-    $scope.search = { city: 'Oslo' };
+    .controller('WeatherController', ['$scope', 'WeatherService',
+        function ($scope, WeatherService) {
 
-    $scope.doSearch = function () {
+        $scope.heading = 'Awesome weather application';
 
-        $scope.searchResult = WeatherService.query({ q: $scope.search.city });
-    }
+        $scope.search = { city: 'Oslo' };
 
-}]);
+        $scope.doSearch = function () {
+
+            $scope.searchResult = WeatherService.query({ q: $scope.search.city });
+        }
+    }])
+;
