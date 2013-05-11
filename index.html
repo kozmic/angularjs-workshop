@@ -56,6 +56,10 @@
             margin-left: 10%;
             font-size: 12px;
         }
+        table.padded tr > td:first-child {
+            padding-right: 10px;
+            text-align: right;
+        }
 
 	</style>
 </head>
@@ -157,7 +161,7 @@
     <section class="slide">
         <div>
             <h2>MVC-ish</h2>
-            <table>
+            <table class="padded">
                 <tbody><tr>
                     <td><strong>Model:</strong></td>
                     <td>Plain Javascript</td>
@@ -168,7 +172,7 @@
                 </tr>
                 <tr>
                     <td><strong>Controller:</strong></td>
-                    <td>Sets model on <code>$scope</code> and watches for changes, in addition to exposing helper methods for view</td>
+                    <td>Exposes the model to the view by setting model on <code>$scope</code> which is watched for changes. Controller usually has helper methods to view./td>
                 </tr>
                 </tbody></table>
         </div>
@@ -194,9 +198,16 @@
         </pre>
 
         <pre class="brush: html" title="HTML">
-            &lt;script src="lib/angular.min.js"/>
-            &lt;script src="js/app.js"/>
-            &lt;div ng-app="weatherApp">&lt;/div>
+            &lt;html>
+            &lt;body>
+                &lt;script src="lib/angular.min.js"/>
+                &lt;script src="js/app.js"/>
+
+                &lt;div ng-app="weatherApp">
+                    &lt;!-- Angular World -->
+                &lt;/div>
+            &lt;/body>
+            &lt;/html>
         </pre>
 
 	</div></section>
@@ -206,8 +217,8 @@
             <h2>Basic controller with binding</h2>
             <p>Exposes data and helper functions to view</p>
 
-            <pre class="brush: js" title="controller/HelloController.js">
-                weatherApp.controller('HelloController', function($scope) {
+            <pre class="brush: js" title="controller/WeatherController.js">
+                weatherApp.controller('WeatherController', function($scope) {
 
                     $scope.heading = 'Weather forecast';
                     $scope.searchTerm = 'Oslo';
@@ -215,7 +226,7 @@
             </pre>
             <pre class="brush: html" title="HTML">
                 &lt;div ng-app="weatherApp">
-                    &lt;div ng-controller="HelloController">
+                    &lt;div ng-controller="WeatherController">
                         {{heading}}
                         <form>
                             <input ng-model="searchTem"/>
@@ -223,6 +234,40 @@
                     &lt;/div>
                 &lt;/div>
             </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Try</h2>
+            <ul>
+                <li>
+                    Download angular.js, include it in index.html.
+                </li>
+                <li>
+                    Create your own root module.
+                </li>
+                <li>
+                    Create your first controller.
+                </li>
+                <li>
+                    Bind input to model.
+                </li>
+                <li>
+                    Write the model value out.
+                    <ul>
+                        <li>For example: You searched for "INPUT".</li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Scopes</h2>
+            <img src="img/Template_Model_View.png" />
         </div>
     </section>
 
@@ -275,13 +320,6 @@
 
 				&lt;h2 ng-show="title">{{title}}&lt;/h2>
             </pre>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Scopes</h2>
-            <img src="img/Template_Model_View.png" />
         </div>
     </section>
 
@@ -390,7 +428,7 @@
 		<div>
 			<h2>Custom filters</h2>
 			<pre class="brush: js">
-			weatherApp.module('weatherFilters, [])
+			weatherApp.module('weatherFilters', [])
 
 			  .filter('appendPostfix',function(){
 					return function(value, postfix) {
@@ -579,7 +617,7 @@
 			<h2>Dev/Mock/Test $http/$resource</h2>
 			<p>Mock responses for development with mocked backeds (or testing)</p>
 			<pre class="brush: js" title="mockServices.js">
-			weatherAppDev = angular.module('weatherAppDev', ['weatherApp', 'ngMockE2E']);
+			var weatherAppDev = angular.module('weatherAppDev', ['weatherApp', 'ngMockE2E']);
 			weatherAppDev.run(function ($httpBackend) {
 
 				$httpBackend.whenGET('/weather\/\w*$').respond(window.weatherResult_Oslo);
@@ -602,6 +640,35 @@
 			</pre>
 		</div>
 	</section>
+
+    <section class="slide">
+        <div>
+            <h2>Setup for testing controller</h2>
+            <pre class="brush: js">
+            describe('WeatherController', function() {
+
+              describe('WeatherController', function(){
+                var scope, ctrl, httpBackend, defaultCity = 'Oslo';
+
+                beforeEach(inject(function($httpBackend, $rootScope, $controller) {
+                  httpBackend = $httpBackend;
+                  httpBackend.expectJSONP('/weather?q=' + defaultCity).
+                      respond({city: 'Oslo', weather: 'Sun' });
+
+                  scope = $rootScope.$new();
+                  scope.search = { city: defaultCity };
+                  ctrl = $controller(PhoneListCtrl, {$scope: scope});
+
+                  httpBackend.flush();
+                }));
+
+                it('should fetch results for Oslo at initialization', function() {
+                    expect(scope.result.city).toBe(defaultCity);
+                });
+            });
+            </pre>
+        </div>
+    </section>
 
 	<section class="slide">
 		<div>
@@ -682,25 +749,14 @@ weatherApp.config(function ($httpProvider) {
         <div>
             <h2>Dependency injection</h2>
             <pre class="brush: js">
-                angualar.module('myModule', []).
-                config(function(depService){
-                    ...
-                }).
-                service('serviceName', function(depService) {
-                    ...
-                }).
-                factory('factoryName', function(depService) {
-                    ...
-                }).
-                directive('directiveName', function(depService) {
-                    ...
-                }).
-                filter('filterName', function(depService) {
-                    ...
-                }).
-                run(function(depService) {
-                    ...
-                });
+                angualar.module('myModule', [])
+                  .config(function(depService){})
+                  .run(function(depService) {});
+                  .service('serviceName', function(depService) {})
+                  .factory('factoryName', function(depService) {})
+                  .directive('directiveName', function(depService) {})
+                  .filter('filterName', function(depService) {})
+
             </pre>
         </div>
     </section>
