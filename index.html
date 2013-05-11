@@ -430,12 +430,14 @@
 			<pre class="brush: js">
 			weatherApp.module('weatherFilters', [])
 
-			  .filter('appendPostfix',function(){
+              // &lt;span>{{ itemPrice | postfix:'kr' }}&lt;/span>
+			  .filter('postfix',function(){
 					return function(value, postfix) {
 						return !!value ? value + postfix : value;
 					};
 			  })
 
+              // &lt;div ng-bind-html="textWithNewlines | nl2br"/>
 			  .filter('nl2br', function() {
 					return function(input) {
 						return ('' + input).split('\n').join('<br />');
@@ -506,6 +508,37 @@
 			</pre>
 		</div>
 	</section>
+
+    <section class="slide">
+        <div>
+            <h2>Two type of directives</h2>
+            <p>TODO: bruk noe lignende egghead.io eksempelet</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>$watch and $observe</h2>
+            <p>Most used in directives or controllers</p>
+            <pre class="brush: js">
+            .directive('custom', function () {
+              return {
+                link: function (scope, iElement, iAttrs) {
+
+                  iAttrs.$observe('myAttr', function (value) {
+                    scope.myAttrValue = value;
+                  });
+
+                  // Replace iAttrs.myAttr with 'name' to watch $scope.name
+                  scope.$watch(iAttrs.myAttr, function (newVal, oldVal, scope) {
+                    scope.myAttrValue = value;
+                  });
+                });
+              }
+            });
+            </pre>
+        </div>
+    </section>
 
 	<section class="slide">
 		<div>
@@ -593,6 +626,10 @@
 				WeatherService.save({ city: 'Oslo' }, body)  // POST
 				WeatherService.remove(myWeather)     // DELETE
 				WeatherService.delete(myWeather)     // DELETE
+
+                var Oslo = WeatherService.get({city: 'Oslo'})
+                Oslo.temp = 100;
+                Oslo.$save();
 
 				// With callbacks, not typically used:
 				WeatherService.save(myWeather, succes, error)
@@ -730,21 +767,6 @@ weatherApp.config(function ($httpProvider) {
 		</div>
 	</section>
 
-
-    <section class="slide">
-        <div>
-            <h2>TODO</h2>
-            <ul>
-                <li>
-                    $decorate
-                </li>
-                <li>
-                    To typer directives.. egghead.io
-                </li>
-            </ul>
-        </div>
-    </section>
-
     <section class="slide">
         <div>
             <h2>Dependency injection</h2>
@@ -799,6 +821,17 @@ weatherApp.config(function ($httpProvider) {
 			</pre>
 		</div>
 	</section>
+
+    <section class="slide">
+        <div>
+            <h2>Events</h2>
+            <pre class="brush: js">
+                $rootScope.$broadcast('Event for children', args);
+                $scope.$emit('Event for parents', args);
+                $scope.$on('Event for parents', fn(event, args) );
+            </pre>
+        </div>
+    </section>
 
 	<!--
 		To hide progress bar from entire presentation
