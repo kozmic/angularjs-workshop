@@ -2,6 +2,7 @@
 
 angular.module('weatherApp', [
     'waRoutes',
+    'waDirectives',
     'waWeatherService',
     'waSessionStore',
     'waControllers',

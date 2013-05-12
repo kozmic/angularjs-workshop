@@ -1,6 +1,5 @@
-<div ng-show="searchResult">
+<div ng-show="searchResult.name">
     Temperature in {{searchResult.name}} is now {{searchResult.main.temp}} C.
-    <img class="weather" ng-src="http://openweathermap.org/img/w/{{searchResult.weather[0].icon}}.png"/><br />
-    Country: {{searchResult.sys.country}}
-
+    <weather source="{{searchResult.weather[0]}}"/>
+    <!-- searchResult.weather[0].icon-->
 </div>

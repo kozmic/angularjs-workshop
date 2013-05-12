@@ -1,3 +1,8 @@
 .weatherApp.container {
     padding-top: 40px;
 }
+
+footer {
+    margin-top: 50px;
+    font-size: 0.7em;
+}
