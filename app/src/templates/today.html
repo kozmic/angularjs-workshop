@@ -1,5 +1,4 @@
 <div ng-show="searchResult.name">
     Temperature in {{searchResult.name}} is now {{searchResult.main.temp}} C.
-    <weather source="{{searchResult.weather[0]}}"/>
-    <!-- searchResult.weather[0].icon-->
+    <weather-icon source="{{searchResult.weather[0]}}"/>
 </div>

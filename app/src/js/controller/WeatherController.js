@@ -20,7 +20,7 @@ angular.module('waControllers', [])
         $scope.$watch( function() { return SessionStore.search.city; }, function (updatedCity ) {
 
             if(updatedCity) {
-                $scope.searchResult = WeatherService.today({ q: updatedCity });;
+                $scope.searchResult = WeatherService.today({ q: updatedCity });
             }
         });
 
@@ -31,7 +31,7 @@ angular.module('waControllers', [])
         $scope.$watch( function() { return SessionStore.search.city; }, function (updatedCity ) {
 
             if(updatedCity) {
-                $scope.searchResult = WeatherService.week({ q: updatedCity });;
+                $scope.searchResult = WeatherService.week({ q: updatedCity });
             }
         });
 

@@ -1,13 +1,12 @@
 <div ng-show="searchResult.city">
-    Showing forecast for {{searchResult.city.name}} (population: {{searchResult.city.population}}).
+    <p>Showing forecast for {{searchResult.city.name}} (population: {{searchResult.city.population}}).</p>
 
-    <ul>
-        <li ng-repeat="entry in searchResult.list">
-            <p>
-                {{entry.dt * 1000 | date:'medium'}}
-                <weather source="{{entry.weather[0]}}"/>
-            </p>
-        </li>
-    </ul>
+    <div class="weatherResultContainer">
+        <div ng-repeat="entry in searchResult.list" class="weatherEntry">
+            {{ entry.dt * 1000 | date:'MM.dd.yyyy' }}
+            <p ng-bind="entry.weather[0].description"></p>
+            <weather-icon source="{{entry.weather[0]}}"/>
+        </div>
+    </div>
 
 </div>

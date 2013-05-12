@@ -19,8 +19,8 @@ angular.module('waWeatherService', [])
                 week:  {
                     method: 'JSONP',
                     params: {
-                        action: 'forecast',
-                        cnt: 1,
+                        action: 'forecast/daily',
+                        cnt: 7,
                         mode: 'json',
                         units: 'metric',
                         callback: 'JSON_CALLBACK'

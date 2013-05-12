@@ -6,3 +6,19 @@ footer {
     margin-top: 50px;
     font-size: 0.7em;
 }
+
+.weatherEntry {
+    padding: 5px 7px;
+    width: 170px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    background-color: #d9d9d9;
+}
+.weatherEntry img {
+
+}
+
+.weatherApp .weatherResultContainer {
+    float: left;
+}

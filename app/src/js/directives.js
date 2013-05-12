@@ -1,7 +1,7 @@
 angular.module('waDirectives', [])
 
     // Delays adding img.src so the browser do not perform a GET request if icon is not set.
-    .directive('weather', function() {
+    .directive('weatherIcon', function() {
         var weatherUrl = 'http://openweathermap.org/img/w/{{icon}}.png';
         return {
             restrict: 'E',
