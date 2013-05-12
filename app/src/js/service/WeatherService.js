@@ -4,14 +4,23 @@ angular.module('waWeatherService', [])
 
     .factory('WeatherService', ['$resource', function ($resource) {
 
-
-//        return $resource('http://api.openweathermap.org/data/2.5/weather?mode=json&units=metric&lat=59.9193233&lon=-10.8166766&callback=:callback',
-        return $resource('http://api.openweathermap.org/data/2.5/weather',
+        return $resource('http://api.openweathermap.org/data/2.5/:action',
             {},
             {
-                query: {
+                today: {
                     method: 'JSONP',
                     params: {
+                        action: 'weather',
+                        mode: 'json',
+                        units: 'metric',
+                        callback: 'JSON_CALLBACK'
+                    }
+                },
+                week:  {
+                    method: 'JSONP',
+                    params: {
+                        action: 'forecast',
+                        cnt: 1,
                         mode: 'json',
                         units: 'metric',
                         callback: 'JSON_CALLBACK'
@@ -19,6 +28,5 @@ angular.module('waWeatherService', [])
                 }
             }
         );
-
     }])
 ;

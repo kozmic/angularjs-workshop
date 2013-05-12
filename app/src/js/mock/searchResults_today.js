@@ -1,4 +1,4 @@
-window.find_result_Oslo = {
+window.searchResult_today_Oslo = {
     "coord": {"lon": 10.74609, "lat": 59.912731},
     "sys": {"country": "NO", "sunrise": 1368240427, "sunset": 1368301176},
     "weather": [

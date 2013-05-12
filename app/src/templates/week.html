@@ -1,0 +1,10 @@
+<div ng-show="searchResult">
+    Showing forecast for {{searchResult.city.name}} (population: {{searchResult.city.population}}).
+
+    <ul>
+        <li ng-repeat="entry in searchResult.list">
+            <p>{{entry.dt * 1000 | date:'medium'}} <img class="weather" ng-src="http://openweathermap.org/img/w/{{entry.weather[0].icon}}.png"/></p>
+        </li>
+    </ul>
+
+</div>

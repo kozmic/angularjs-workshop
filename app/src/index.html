@@ -14,13 +14,15 @@
 
     <!-- Weather application: -->
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/routes.js"></script>
     <script type="text/javascript" src="js/controller/WeatherController.js"></script>
     <script type="text/javascript" src="js/service/WeatherService.js"></script>
     <script type="text/javascript" src="js/service/SessionStore.js"></script>
 
     <!-- Mock backend. Activated when ng-app=weatherAppDev, instead of weatherApp -->
     <script type="text/javascript" src="lib/angular/angular-mocks.js "></script>
-    <script type="text/javascript" src="js/mock/find_Results.js"></script>
+    <script type="text/javascript" src="js/mock/searchResults_today.js"></script>
+    <script type="text/javascript" src="js/mock/searchResults_week.js"></script>
     <script type="text/javascript" src="js/mock/mockServices.js"></script>
 </head>
 <body>
@@ -33,10 +35,10 @@
                 <a class="brand" href="#/">Today</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="active">
-                            <a href=".#/">Today</a>
+                        <li ng-class="{active: $route.current.activetab == 'today'}">
+                            <a href="#/">Today</a>
                         </li>
-                        <li class="">
+                        <li ng-class="{active: $route.current.activetab == 'week'}">
                             <a href="#/week">Next 7 days</a>
                         </li>
                     </ul>
@@ -45,28 +47,21 @@
         </div>
     </div>
     <div class="weatherApp container">
-        <div ng-controller="WeatherController">
-            <h1>{{heading}}</h1>
+        <h1>Awesome weather app</h1>
 
-            <div class="searchContainer">
+        <div class="searchContainer" ng-controller="SearchTermController">
 
-                <form name="searchForm" class="form-inline" ng-submit="doSearch()" novalidate>
-                    <div class="input-append">
-                        <input class="input-medium" name="city" type="text" ng-model="search.city" placeholder="City" ng-required="true"/>
-                        <button type="submit" class="btn">Show weather</button>
-                        <span ng-show="searchForm.city.$error.required && searchForm.city.$dirty">City is required</span>
-                    </div>
-                </form>
+            <form name="searchForm" class="form-inline" ng-submit="doSearch()" novalidate>
+                <div class="input-append">
+                    <input class="input-medium" name="city" type="text" ng-model="search.city" placeholder="City" ng-required="true"/>
+                    <button type="submit" class="btn">Show weather</button>
+                    <span ng-show="searchForm.city.$error.required && searchForm.city.$dirty">City is required</span>
+                </div>
+            </form>
 
-            </div>
-
-            <div ng-show="searchResult">
-                Temperature in {{searchResult.name}} is now {{searchResult.main.temp}} C.
-                <img class="weather" ng-src="http://openweathermap.org/img/w/{{searchResult.weather[0].icon}}.png"/><br />
-                Country: {{searchResult.sys.country}}
-
-            </div>
         </div>
+
+       <ng-view></ng-view>
     </div>
 
 </div>

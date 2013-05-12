@@ -4,7 +4,8 @@ angular.module('waSessionStore', [])
 
     .factory('SessionStore', function() {
         var Session = {
-            search: {}
+            search: {},
+            searchResult: {}
         };
 
         if ("geolocation" in navigator) {

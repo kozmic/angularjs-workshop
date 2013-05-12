@@ -2,21 +2,38 @@
 
 angular.module('waControllers', [])
 
-    .controller('WeatherController', ['$scope', 'WeatherService', 'SessionStore', function ($scope, WeatherService, SessionStore) {
+    .controller('SearchTermController', ['$scope', 'SessionStore', function($scope, SessionStore) {
+        // Remove reference so we do not performe a search one every model update
+        $scope.search = angular.copy(SessionStore.search);
 
-            $scope.heading = 'Awesome weather application';
+        $scope.doSearch = function () {
 
-            $scope.search = SessionStore.search;
+            if($scope.searchForm.$valid){
 
-            $scope.doSearch = function () {
+                SessionStore.search.city = $scope.search.city;
+            }
+        };
+    }])
 
-                if($scope.searchForm.$valid){
+    .controller('TodayWeatherController', ['$scope', 'SessionStore', 'WeatherService', function ($scope, SessionStore, WeatherService) {
 
-                    SessionStore.search.city = $scope.search.city;
-                    $scope.searchResult = WeatherService.query({ q: $scope.search.city });
+        $scope.$watch( function() { return SessionStore.search.city; }, function (updatedCity ) {
 
-                }
-            };
+            if(updatedCity) {
+                $scope.searchResult = WeatherService.today({ q: updatedCity });;
+            }
+        });
 
-        }])
+    }])
+
+    .controller('WeekWeatherController', ['$scope', 'SessionStore', 'WeatherService', function ($scope, SessionStore, WeatherService) {
+
+        $scope.$watch( function() { return SessionStore.search.city; }, function (updatedCity ) {
+
+            if(updatedCity) {
+                $scope.searchResult = WeatherService.week({ q: updatedCity });;
+            }
+        });
+
+    }])
 ;
