@@ -32,13 +32,12 @@ Create an Hello World AngularJS application.
 3. Update template to display the $scope property.
 
 
-### 4. Create search form without submit action
+### 4. Create search form
 
 1. Create a form with `ng-submit`.
 2. Create input field in form that is bound to scope in controller.
 
-
-### 5. Add validation
+### 5. Add validation to form
 1. Give your controller a name.
 2. Add a error message that is shown if the field is empty.
 
@@ -65,4 +64,8 @@ Create an Hello World AngularJS application.
 1. Create a directive which use the directive in the above task, but also display other weather data.
 (Tip: Use transclude: true and <weather><weatherIcon/></weather)
 
+### 11. Create feedback form
+1. Create a new route and template.
+2. Create a complex form with url and email inputs (dropdown? radio? checkbox?).
+3. Try not to display error messages until the user has tried to submit the form, possible?
 
