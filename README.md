@@ -27,7 +27,7 @@ Create an Hello World AngularJS application.
 
 ### 3. Create a controller
 
-1. Create a controller in controller/WeatherController.js.
+1. Create a controller in controller/SearchTermController.js.
 2. Declare a $scope property.
 3. Update template to display the $scope property.
 
@@ -69,5 +69,5 @@ Create an Hello World AngularJS application.
 2. Create a complex form with url and email inputs (dropdown? radio? checkbox?).
 3. Try not to display error messages until the user has tried to submit the form, possible?
 
-### 12. Route resolve
+### 12. Route resolve (think GMail)
 1. When switching between the routes "today" and "weekly", try to utilize the "resolve" functionality to only switch to new route when the target data is fetched from openweathermap (or display error in current route if data fetching fails).

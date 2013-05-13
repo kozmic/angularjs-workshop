@@ -1,0 +1,39 @@
+<h1>Feedback</h1>
+<form name="feedback" ng-submit="submitFeedback()">
+    <label>Name:<br/>
+        <input type="text" ng-model="user.name"/>
+    </label>
+
+    <label>
+        E-mail: <br />
+        <input type="email" ng-model="user.email" required name="fEmail"/>
+    </label>
+
+    <div ng-show="feedback.fEmail.$dirty && feedback.fEmail.$invalid">
+        Invalid:
+        <span ng-show="feedback.fEmail.$error.required">Email required</span>
+        <span ng-show="feedback.fEmail.$error.email">Invalid email</span>
+    </div>
+
+    <label>
+        Homepage: <br />
+        <input type="url" ng-model="user.url" required name="fUrl"/>
+    </label>
+
+    <div ng-show="feedback.fUrl.$dirty && feedback.fUrl.$invalid">
+        Invalid:
+        <span ng-show="feedback.fUrl.$error.required">Email required</span>
+        <span ng-show="feedback.fUrl.$error.url">Invalid URL</span>
+    </div>
+
+    <label>Feedback:<br/>
+        <textarea ng-model="user.feedback" cols="290" rows="10" ng-required="true" name="feedback"/>
+    </label>
+    <div ng-show="feedback.feedback.$dirty && feedback.feedback.$invalid">
+        Invalid:
+        <span ng-show="feedback.feedback.$error.required">Feedback required</span>
+    </div>
+
+
+    <button ng-disabled="feedback.$invalid">Send</button>
+</form>

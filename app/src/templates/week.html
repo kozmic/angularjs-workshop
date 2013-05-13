@@ -1,5 +1,6 @@
 <div ng-show="searchResult.city">
-    <p>Showing forecast for {{searchResult.city.name}} (population: {{searchResult.city.population}}).</p>
+    <h2>Week</h2>
+    <p>Showing forecast for <strong ng-bind="searchResult.city.name"></strong> (population of {{searchResult.city.population}}).</p>
 
     <div class="weatherResultContainer">
         <div ng-repeat="entry in searchResult.list" class="weatherEntry">

@@ -1,15 +1,23 @@
 angular.module('waRoutes', [])
     .config(function($routeProvider, $locationProvider) {
         $routeProvider
+
             .when('/', {
                 templateUrl: 'templates/today.html',
-                controller: 'TodayWeatherController',
+                controller: 'TodayController',
                 activetab: 'today' // TODO: Refactor to directive
             })
+
             .when('/week', {
                 templateUrl: 'templates/week.html',
-                controller: 'WeekWeatherController',
+                controller: 'WeekController',
                 activetab: 'week'
+            })
+
+            .when('/feedback', {
+                templateUrl: 'templates/feedback.html',
+                controller: 'FeedbackController',
+                activetab: 'feedback'
             })
 
             .when('/404', { templateUrl: 'templates/404.html' })

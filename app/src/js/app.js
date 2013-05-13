@@ -5,6 +5,10 @@ angular.module('weatherApp', [
     'waDirectives',
     'waWeatherService',
     'waSessionStore',
-    'waControllers',
+    'waSearchTermController',
+    'waTodayController',
+    'waWeekController',
+    'waFeedbackController',
+
     'ngResource'
 ]);

@@ -16,7 +16,10 @@
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/routes.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
-    <script type="text/javascript" src="js/controller/WeatherController.js"></script>
+    <script type="text/javascript" src="js/controller/SearchTermController.js"></script>
+    <script type="text/javascript" src="js/controller/TodayController.js"></script>
+    <script type="text/javascript" src="js/controller/WeekController.js"></script>
+    <script type="text/javascript" src="js/controller/FeedbackController.js"></script>
     <script type="text/javascript" src="js/service/WeatherService.js"></script>
     <script type="text/javascript" src="js/service/SessionStore.js"></script>
 
@@ -42,6 +45,9 @@
                         <li>
                             <a href="#/week">Next 7 days</a>
                         </li>
+                        <li>
+                            <a href="#/feedback">Feedback</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +62,7 @@
             <form name="searchForm" class="form-inline" ng-submit="doSearch()" novalidate>
                 <div class="input-append">
                     <input class="input-medium" name="city" type="text" ng-model="search.city" ng-pattern="/[A-Za-z]+/" placeholder="City" ng-required="true"/>
-                    <button type="submit" class="btn" ng-disabled="searchForm.$invalid">Show weather</button>
+                    <button type="submit" class="btn">Show weather</button>
                 </div>
                 <p ng-show="searchForm.city.$error.required && searchForm.city.$dirty">City is required</p>
                 <p ng-show="searchForm.city.$error.pattern && searchForm.city.$dirty">Pattern invalid</p>
@@ -64,7 +70,7 @@
 
         </div>
 
-       <ng-view></ng-view>
+       <ng-view />
     </div>
 
     <footer>
