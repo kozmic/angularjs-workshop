@@ -546,6 +546,7 @@
 	<section class="slide">
 		<div>
 			<h2>Directive API</h2>
+            <p>Only place DOM manipulation is allowed.</p>
             <pre class="brush: js">
             myApp.directive('directiveName', function(dep1, dep2) {
               return {
@@ -584,7 +585,6 @@
 	<section class="slide">
 		<div>
 			<h2>Custom directive</h2>
-            <p>ONLY place DOM manipulation is allowed!!</p>
             <p>DateFormatter directive:</p>
 			<pre class="brush: js">
 				// Example usage:  &lt;p class="DateFormatter" data-dato="{{myDate}}" />
@@ -609,8 +609,8 @@
 
     <section class="slide">
         <div>
-            <h2>$watch and $observe (on attrs)</h2>
-            <p>Mainly for directives</p>
+            <h2>$watch and $observe</h2>
+            <p>Mainly for directives.</p>
             <pre class="brush: js">
             .directive('custom', function () {
               return {
