@@ -42,6 +42,27 @@ Create an Hello World AngularJS application.
 1. Give your controller a name.
 2. Add a error message that is shown if the field is empty.
 
+### 6. JSON resource
+1. Create a service with a $resource with url: http://api.openweathermap.org/data/2.5/weather?q=London,uk.
+2. Call the service from your controller where the input from your form is sent as an argument to the service ( q=<form-input>).
+3. Display weather response in the controller.
 
+### 7. Refactor your application to introduce routing.
+1. Replace "main view" with a ng-view directive, add what was in the main view before into a separate template.
+2. Add routing for "#/" so the new template is show in the ng-view directive.
+
+### 8. Add weekly forecast on new url
+1. Add a new route which should be used to display weekly weather with its own template.
+2. Update menu to link to your new route.
+3. Create a new resource with the url http://api.openweathermap.org/data/2.5/forecast/daily?q=London,uk.&cnt=7
+4. Display the weather for the next 7 days in the view.
+
+### 9. Create your a simple directive (weatherIcon)
+1. Create a directive so the weather icon does not perform a GET request before the interpolation is done.
+(One solution: Put the uninterpolated icon url in the directive. Do not set img.src before the model has the icon property set)
+
+### 10. Create a complex directive (weather)
+1. Create a directive which use the directive in the above task, but also display other weather data.
+(Tip: Use transclude: true and <weather><weatherIcon/></weather)
 
 

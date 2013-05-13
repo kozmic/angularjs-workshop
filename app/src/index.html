@@ -55,10 +55,11 @@
 
             <form name="searchForm" class="form-inline" ng-submit="doSearch()" novalidate>
                 <div class="input-append">
-                    <input class="input-medium" name="city" type="text" ng-model="search.city" placeholder="City" ng-required="true"/>
-                    <button type="submit" class="btn">Show weather</button>
-                    <span ng-show="searchForm.city.$error.required && searchForm.city.$dirty">City is required</span>
+                    <input class="input-medium" name="city" type="text" ng-model="search.city" ng-pattern="/[A-Za-z]+/" placeholder="City" ng-required="true"/>
+                    <button type="submit" class="btn" ng-disabled="searchForm.$invalid">Show weather</button>
                 </div>
+                <p ng-show="searchForm.city.$error.required && searchForm.city.$dirty">City is required</p>
+                <p ng-show="searchForm.city.$error.pattern && searchForm.city.$dirty">Pattern invalid</p>
             </form>
 
         </div>

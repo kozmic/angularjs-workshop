@@ -17,7 +17,7 @@ angular.module('waDirectives', [])
 
                         var image = new Image();
                         image.onload = function() {
-                            
+
                             iElement.attr('src', iconUrl);
                         };
                         image.src = iconUrl;
