@@ -6,7 +6,7 @@ This workshop creates everything from scratch, step by step, so the participants
 It does not include building a production ready application (concatination, minification, less -> css) since it adds complexity.
 
 
-* [Slides for workshop](http://kozmic.github.io/angularjs-workshop/)
+* [Slides used for workshop](http://kozmic.github.io/angularjs-workshop/)
 
 ## Tasks
 
@@ -69,3 +69,5 @@ Create an Hello World AngularJS application.
 2. Create a complex form with url and email inputs (dropdown? radio? checkbox?).
 3. Try not to display error messages until the user has tried to submit the form, possible?
 
+### 12. Route resolve
+1. When switching between the routes "today" and "weekly", try to utilize the "resolve" functionality to only switch to new route when the target data is fetched from openweathermap (or display error in current route if data fetching fails).
