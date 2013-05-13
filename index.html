@@ -26,6 +26,13 @@
 		.slide h2 {
 			margin: 0 0 20px;
 		}
+        .slide .left {
+            display: block;
+            float: left;
+            margin-right: 5px;
+            width: 375px;
+        }
+
 		#First h2 {
 			margin:65px 0 0;
 			text-align:center;
@@ -74,6 +81,8 @@
 		<h2>AngularJS Workshop</h2>
 		<p>Ståle Pettersen / <a href="https://twitter.com/kozmic">@kozmic</a></p>
         <p>May 14th, 2013</p>
+        <p>Lates version of slides at: <a href="http://kozmic.github.com/angularjs-workshop/">http://kozmic.github.com/angularjs-workshop/</a></p>
+        <p>One version of the weather app: <a href="https://github.com/kozmic/angularjs-workshop">https://github.com/kozmic/angularjs-workshop</a></p>
 	</section>
 
 	<section class="slide"><div>
@@ -113,7 +122,6 @@
             <h2>Disclaimer:</h2>
             <h2>I consider myself an AngularJS n00b</h2>
             <h2>...even with 8 months experience</h2>
-            <h2>...written thousands of AngularJS lines</h2>
             <h2>...I learn something new each week</h2>
         </div>
     </section>
@@ -160,6 +168,35 @@
 
     <section class="slide">
         <div>
+            <h2>Useful resources</h2>
+            <ul class="left">
+                <li><a href="http://angularjs.org/" class="roll"><span data-title="angularjs.org">angularjs.org</span></a></li>
+                <li><a href="http://groups.google.com/group/angular " class="roll"><span data-title="Google groups - AngularJS">Google groups - AngularJS</span></a></li>
+                <li><a href="http://www.yearofmoo.com/search/?q=angularjs" class="roll"><span data-title="yearofmoo.com">yearofmoo.com (bible!)</span></a></li>
+                <li><a href="http://egghead.io/" class="roll"><span data-title="Egghead screencast series">Egghead screencast series</span></a></li>
+                <li><a href="https://github.com/angular/angular-seed" class="roll"><span data-title="angular-seed">angular-seed</span></a></li>
+                <li><a href="http://docs.angularjs.org/cookbook/" class="roll"><span data-title="AngularJS cookbook examples">AngularJS cookbook examples</span></a></li>
+                <li><a href="https://github.com/CaryLandholt/AngularFun" class="roll"><span data-title="Angular Fun + CoffeeScript + RequireJs">Angular Fun + CoffeeScript + RequireJs</span></a></li>
+                <li><a href="http://angular-ui.github.com/" class="roll"><span data-title="Angular-UI">Angular-UI</span></a></li>
+                <li><a href="http://deansofer.com/posts/view/14/AngularJs-Tips-and-Tricks-UPDATED" class="roll"><span data-title="AngularJS tips and tricks">AngularJS tips and tricks</span></a></li>
+                <li><a href="http://stackoverflow.com/questions/tagged/angularjs" class="roll">StackOverflow (5508)</a></li>
+            </ul>
+            <ul class="left">
+                <li><a href="http://blog.tomaka17.com/2012/12/random-tricks-when-using-angularjs/">Simple loader setup, error handling &amp; tricks</a></li>
+                <li><a href="http://beta.plnkr.co/edit/gXO6Ia">Complex loader setup</a></li>
+                <li><a href="http://stackoverflow.com/questions/14049480/what-are-the-nuances-of-scope-prototypal-prototypical-inheritance-in-angularjs/14049482#14049482">Scope, inheritance and scope in directives</a></li>
+                <li><a href="http://ngmodules.org/">Directives repository: ngmodules.org</a></li>
+                <li><a href="http://jsfiddle.net/manishchhabra/Ne5P8/">Service vs factory</a></li>
+                <li><a href="http://briantford.com/blog/angular-bower.html">Bower and AngularJS setup</a></li>
+                <li><a href="http://weblogs.asp.net/dwahlin/archive/2013/04/12/video-tutorial-angularjs-fundamentals-in-60-ish-minutes.aspx">AngularJS Fundamentals in 60m</a></li>
+                <li><a href="https://docs.google.com/presentation/d/1GB0LO-gQ63bfaDfdaKLcdsFV3gt27m7ICmdfY21yFIo/pub?start=false&loop=false&delayms=3000">Google's AngularJS Best Practices</a></li>
+                <li><a href="http://blog.whydoifollow.com/post/angularjs-where-to-start">Another AngularJS link collection</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
             <h2>MVC-ish</h2>
             <table class="padded">
                 <tbody><tr>
@@ -172,7 +209,7 @@
                 </tr>
                 <tr>
                     <td><strong>Controller:</strong></td>
-                    <td>Exposes the model to the view by setting model on <code>$scope</code> which is watched for changes. Controller usually has helper methods to view./td>
+                    <td>Exposes the model to the view by setting model on <code>$scope</code> which is watched for changes. Controller usually has helper methods to view.</td>
                 </tr>
                 </tbody></table>
         </div>
@@ -237,6 +274,23 @@
         </div>
     </section>
 
+
+    <section class="slide">
+        <div>
+            <h2>Dependency injection</h2>
+            <pre class="brush: js">
+                angualar.module('myModule', [dep])
+                  .config(function(dep){})
+                  .run(function(dep) {});
+                  .service('serviceName', function(dep) {})
+                  .factory('factoryName', function(dep) {})
+                  .directive('directiveName', function(dep) {})
+                  .filter('filterName', function(dep) {})
+                  // and more...
+            </pre>
+        </div>
+    </section>
+
     <section class="slide">
         <div>
             <h2>Try</h2>
@@ -254,7 +308,7 @@
                     Bind input to model.
                 </li>
                 <li>
-                    Write the model value out.
+                    Output the model value to the page.
                     <ul>
                         <li>For example: You searched for "INPUT".</li>
                     </ul>
@@ -267,6 +321,7 @@
     <section class="slide">
         <div>
             <h2>Scopes</h2>
+            <p>All <code>$scope</code>s are children of <code>$rootScope</code>.</p>
             <img src="img/Template_Model_View.png" />
         </div>
     </section>
@@ -274,6 +329,7 @@
     <section class="slide">
         <div>
             <h2>Binding concepts</h2>
+            <p>The AngularJS <code>$scope</code> variable acts as a big key/value storage hash which is internally looped on a timeout interval and dirty checked against it's former value(s) each time a digestion occurs.</p>
             <img src="img/Two_Way_Data_Binding.png"/>
         </div>
     </section>
@@ -294,6 +350,28 @@
 
 				&lt;CmsText data-key=helpText.name"/>
             </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Gotcha</h2>
+            <ul>
+                <li>
+                    <code>$scope</code> changes detected by AngularJS if changed within framework.
+                </li>
+                <li>
+                    Chrome Console: <code>$scope.name = 'Ståle'</code> or <code>$('#name').val('Ståle')</code> will not update DOM.
+                </li>
+                <li>
+                    Chrome Console: <code>$scope.name = 'Ståle'; $scope.$apply();</code> will update DOM.
+                </li>
+                <li>
+                    So... jQuery plugins wrapped in a directive has to call $scope.$apply();
+                </li>
+            </ul>
+            </p>
+            <p></p>
         </div>
     </section>
 
@@ -325,9 +403,28 @@
 
     <section class="slide">
         <div>
+            <h2>Example: Built in input directive</h2>
+            <pre class="brush: js">
+            &lt;input
+                ng-model="{string}"
+               [name="{string}"]
+               [required]
+               [ng-required="{boolean}"]
+               [ng-minlength="{number}"]
+               [ng-maxlength="{number}"]
+               [ng-pattern="{string}"]
+               [ng-change="{string}"] />
+
+            </pre>
+
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
             <h2>Forms</h2>
             <pre class="brush: html">
-                &lt;form novalidate name="weatherForm" ng-submit="submitForm()">
+                &lt;form name="weatherForm" ng-submit="submitForm()">
                     &lt;input name="city" type="input"
                            placeholder="city"
                            ng-model="weather.city"
@@ -335,72 +432,13 @@
 
                     &lt;span ng-show="weatherForm.$errors.city.required">Required&lt;/span>
 
-                    &lt;input type="radio" ng-model="weather.unit" value="celcius" ng/>Celcius
-                    &lt;input type="radio" ng-model="weather.unit" value="fahrenheit" />fahrenheit&lt;
+                    &lt;input type="radio" ng-model="weather.unit" value="celcius"/> Celcius
+                    &lt;input type="radio" ng-model="weather.unit" value="fahrenheit"/> Fahrenheit
                 &lt;/form>
             </pre>
         </div>
     </section>
 
-    <section class="slide">
-        <div>
-            <h2>Example: Built in input directive</h2>
-            <pre class="brush: js">
-            &lt;input
-                ngModel="{string}"
-               [name="{string}"]
-               [required]
-               [ngRequired="{boolean}"]
-               [ngMinlength="{number}"]
-               [ngMaxlength="{number}"]
-               [ngPattern="{string}"]
-               [ngChange="{string}"] />
-
-            </pre>
-
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Customizing forms</h2>
-            <ul>
-                <li>
-                    Model to view: NgModelController#$formatters
-                </li>
-                <li>
-                    View to model: NgModelController#$parsers
-                </li>
-                <li>
-                    Directive
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Form validation directive</h2>
-            <pre class="brush: js">
-                var FLOAT_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
-                app.directive('smartFloat', function() {
-                  return {
-                    require: 'ngModel',
-                    link: function(scope, elm, attrs, ctrl) {
-                      ctrl.$parsers.unshift(function(viewValue) {
-                        if (FLOAT_REGEXP.test(viewValue)) {
-                          ctrl.$setValidity('float', true);
-                          return parseFloat(viewValue.replace(',', '.'));
-                        } else {
-                          ctrl.$setValidity('float', false);
-                          return undefined;
-                        }
-                      });
-                    }
-                  };
-            </pre>
-        </div>
-    </section>
 
 	<section class="slide">
 		<div>
@@ -475,18 +513,72 @@
 		</div>
 	</section>
 
+    <section class="slide">
+        <div>
+            <h2>Directives: Two categories</h2>
+            <ul>
+                <li>
+                    Extending HTML with your own types, can be simple or crazy complex.
+                </li>
+                <li>
+                    Component:
+                    <ul><li>Simple, one element in template (no nesting).
+                        <ul><li>Example: &lt;weatherIcon src="model.src"/></li></ul>
+                    </li></ul>
+                </li>
+                <li>
+                    Container:
+                    <ul><li>Complex, nested templates and/or directives. Example:
+                        <ul><li>&lt;menuSystem menu="model.fullMenuThree"/></li></ul>
+                    </li></ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
 	<section class="slide">
 		<div>
 			<h2>Directive API</h2>
-					<pre class="brush: js">
-
-					</pre>
+            <pre class="brush: js">
+            myApp.directive('directiveName', function(dep1, dep2) {
+              return {
+                replace: true,
+                restrict: 'EACM',
+                priority: 0,
+                templateUrl: 'directive.html',
+                template: '<div></div>',
+                scope: { localName:'@' },
+                controller: function($scope, $element, $attrs, $transclude, dep1) {},
+                transclude: true,
+                compile: function compile(tElement, tAttrs, transclude) {
+                },
+                link: function postLink(scope, iElement, iAttrs) {
+                  scope.$watch('name', function(newVal, oldVal) {..}
+                }
+              }
+            });
+            </pre>
 		</div>
 	</section>
 
+    <section class="slide">
+        <div>
+            <h2>Using directives</h2>
+            <ul>
+                <li><code>E</code> - Element name: <code>&lt;my-directive&gt;&lt;/my-directive&gt;</code></li>
+                <li><code>A</code> - Attribute: <code>&lt;div my-directive="exp"&gt;&lt;/div&gt;</code></li>
+                <li><code>C</code> - Class: <code>&lt;div class="my-directive: exp;"&gt;&lt;/div&gt;</code></li>
+                <li><code>M</code> - Comment: <code>&lt;!-- directive: my-directive exp --&gt;</code></li>
+            </ul>
+
+        </div>
+    </section>
+
 	<section class="slide">
 		<div>
-			<h2>Custom directive: DateFormatter</h2>
+			<h2>Custom directive</h2>
+            <p>ONLY place DOM manipulation is allowed!!</p>
+            <p>DateFormatter directive:</p>
 			<pre class="brush: js">
 				// Example usage:
 				// &lt;p class="DateFormatter" data-dato="{{myDate}}" />
@@ -511,28 +603,22 @@
 
     <section class="slide">
         <div>
-            <h2>Two type of directives</h2>
-            <p>TODO: bruk noe lignende egghead.io eksempelet</p>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>$watch and $observe</h2>
-            <p>Most used in directives or controllers</p>
+            <h2>$watch and $observe (on attrs)</h2>
+            <p>Mainly for directives</p>
             <pre class="brush: js">
             .directive('custom', function () {
               return {
                 link: function (scope, iElement, iAttrs) {
 
+                  // Attributes only (interpolated)
                   iAttrs.$observe('myAttr', function (value) {
                     scope.myAttrValue = value;
                   });
 
-                  // Replace iAttrs.myAttr with 'name' to watch $scope.name
-                  scope.$watch(iAttrs.myAttr, function (newVal, oldVal, scope) {
+                  // Scope and attributes
+                  scope.$watch(iAttrs['myAttr'], function (newVal, oldVal, scope) {
                     scope.myAttrValue = value;
-                  });
+                  }, true); // Object equality vs reference
                 });
               }
             });
@@ -593,6 +679,51 @@
 					</pre>
 		</div>
 	</section>
+
+    <section class="slide">
+        <div>
+            <h2>Customizing formatter/parser</h2>
+            <ul>
+                <li>
+                    Model to view: NgModelController#$formatters
+                </li>
+                <li>
+                    View to model: NgModelController#$parsers
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Form validation directive</h2>
+            <pre class="brush: html">
+                &lt;input ng-model="degrees" smart-float/>
+            </pre>
+            <pre class="brush: js" title="Customer parser for float:">
+                var FLOAT_REGEXP = /^\-?\d+((\.|\,)\d+)?$/;
+
+                app.directive('smartFloat', function() {
+                  return {
+                    require: 'ngModel',
+                    link: function(scope, elm, attrs, ctrl) {
+
+                      ctrl.$parsers.unshift(function(viewValue) {
+
+                        if (FLOAT_REGEXP.test(viewValue)) {
+                          ctrl.$setValidity('float', true);
+                          return parseFloat(viewValue.replace(',', '.'));
+
+                        } else {
+                          ctrl.$setValidity('float', false);
+                          return undefined;
+                        }
+                      });
+                    }
+                  };
+            </pre>
+        </div>
+    </section>
 
 	<section class="slide">
 		<div>
@@ -680,7 +811,7 @@
 
     <section class="slide">
         <div>
-            <h2>Setup for testing controller</h2>
+            <h2>Setup for testing controller with mocked backend</h2>
             <pre class="brush: js">
             describe('WeatherController', function() {
 
@@ -769,25 +900,9 @@ weatherApp.config(function ($httpProvider) {
 
     <section class="slide">
         <div>
-            <h2>Dependency injection</h2>
-            <pre class="brush: js">
-                angualar.module('myModule', [])
-                  .config(function(depService){})
-                  .run(function(depService) {});
-                  .service('serviceName', function(depService) {})
-                  .factory('factoryName', function(depService) {})
-                  .directive('directiveName', function(depService) {})
-                  .filter('filterName', function(depService) {})
-
-            </pre>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
             <h2>Routes</h2>
             <pre class="brush: js">
-                angular.module('myRoutes', function($routeProvider, $locationProvider) {
+                angular.module('myRoutes',[]).config(function($routeProvider, $locationProvider) {
                   $routeProvider
 					.when('/weather', {
 					  templateUrl: 'search.html',
@@ -798,7 +913,7 @@ weatherApp.config(function ($httpProvider) {
 						controller: ResultCtrl
 					})
 
-					.when('/404', { templateUrl: '404.html' });
+					.when('/404', { templateUrl: '404.html' })
 
 					.otherwise( { redirectTo: '/404' });
     
@@ -830,6 +945,13 @@ weatherApp.config(function ($httpProvider) {
                 $scope.$emit('Event for parents', args);
                 $scope.$on('Event for parents', fn(event, args) );
             </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2></h2>
+
         </div>
     </section>
 
