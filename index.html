@@ -86,7 +86,7 @@
 	</section>
 
 	<section class="slide"><div>
-		<h2>Overview</h2>
+		<h2></h2>
 		<ol>
 			<li>
 				AngularJS stuff
@@ -103,15 +103,21 @@
 					<li>
 						Binding
 					</li>
+                    <li>
+                        <strong>Hands on!</strong>
+                    </li>
 					<li>
 						Forms
 					</li>
 					<li>
-						Directives & Filters
+						Directives, filters, routing and more!
 					</li>
 					<li>
-						Routing and more!
+						<strong>Hands on!</strong>
 					</li>
+                    <li>
+                        f00dz
+                    </li>
 				</ul>
 			</li>
 		</ol>
@@ -121,8 +127,10 @@
         <div>
             <h2>Disclaimer:</h2>
             <h2>I consider myself an AngularJS n00b</h2>
-            <h2>...even with 8 months experience</h2>
+            <h2>...even with 9 months experience</h2>
             <h2>...I learn something new each week</h2>
+            <h2>...there will be questions I can't answer</h2>
+            <h2>...we'll Google together! :)</h2>
         </div>
     </section>
 
@@ -293,33 +301,6 @@
 
     <section class="slide">
         <div>
-            <h2>Try</h2>
-            <ul>
-                <li>
-                    Download angular.js, include it in index.html.
-                </li>
-                <li>
-                    Create your own root module.
-                </li>
-                <li>
-                    Create your first controller.
-                </li>
-                <li>
-                    Bind input to model.
-                </li>
-                <li>
-                    Output the model value to the page.
-                    <ul>
-                        <li>For example: You searched for "INPUT".</li>
-                    </ul>
-                </li>
-            </ul>
-
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
             <h2>Scopes</h2>
             <p>All <code>$scope</code>s are children of <code>$rootScope</code>.</p>
             <img src="img/Template_Model_View.png" />
@@ -377,7 +358,35 @@
 
     <section class="slide">
         <div>
+            <h2>Try</h2>
+            <ul>
+                <li>
+                    Download angular.js, include it in index.html.
+                </li>
+                <li>
+                    Create your own root module.
+                </li>
+                <li>
+                    Create your first controller.
+                </li>
+                <li>
+                    Bind input to model.
+                </li>
+                <li>
+                    Output the model value to the page.
+                    <ul>
+                        <li>For example: You searched for "INPUT".</li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
             <h2>Built in directives</h2>
+            <p>Directives (aka components): Extending HTML with your own types, can be simple or crazy complex.</p>
             <pre class="brush: html">
                 &lt;li ng-repeat="result in results">
                     &lt;p>{{result.title}} {{result.date}}&lt;/p>
@@ -454,10 +463,11 @@
 				<li>json (debugging)</li>
 			</ul>
 			<pre class="brush: html">
+                &lt;h1>{{ heading | uppercase }}&lt;/h1>
 				&lt;li ng-repeat="r in res | orderBy:'title':reverse | limitTo:10 | filter:query ">
-				&lt;p>{{r.title}} {{r.date}}&lt;/p>
+				   &lt;p>{{r.title}} {{r.date}}&lt;/p>
 				&lt;/li>
-                <h1>{{ heading | uppercase }}</h1>
+
 			</pre>
 		</div>
 	</section>
@@ -515,11 +525,8 @@
 
     <section class="slide">
         <div>
-            <h2>Directives: Two categories</h2>
+            <h2>Custom directives: Two categories</h2>
             <ul>
-                <li>
-                    Extending HTML with your own types, can be simple or crazy complex.
-                </li>
                 <li>
                     Component:
                     <ul><li>Simple, one element in template (no nesting).
@@ -580,8 +587,7 @@
             <p>ONLY place DOM manipulation is allowed!!</p>
             <p>DateFormatter directive:</p>
 			<pre class="brush: js">
-				// Example usage:
-				// &lt;p class="DateFormatter" data-dato="{{myDate}}" />
+				// Example usage:  &lt;p class="DateFormatter" data-dato="{{myDate}}" />
 				.directive('DateFormatter', function(DateUtilService) {
 					return {
 						replace: false
@@ -642,7 +648,7 @@
 					});
 			</pre>
 			<pre class="brush: html" title="Usage:">
-				&lt;input name="someInput" wa-tabindex="{{tabindex}}" />
+				&lt;input name="someInput" wa-tabindex="{{tab.index}}" />
 			</pre>
 		</div>
 	</section>
