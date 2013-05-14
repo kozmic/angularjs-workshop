@@ -274,7 +274,7 @@
                     &lt;div ng-controller="WeatherController">
                         {{heading}}
                         <form>
-                            <input ng-model="searchTem"/>
+                            <input ng-model="searchTerm"/>
                         </form>
                     &lt;/div>
                 &lt;/div>
@@ -478,7 +478,7 @@
 			<pre class="brush: js">
 			weatherApp.module('weatherFilters', [])
 
-              // &lt;span>{{ itemPrice | postfix:'kr' }}&lt;/span>
+              // &lt;span>{{ temperature | postfix:' C' }}&lt;/span>
 			  .filter('postfix',function(){
 					return function(value, postfix) {
 						return !!value ? value + postfix : value;
@@ -548,7 +548,7 @@
 			<h2>Directive API</h2>
             <p>Only place DOM manipulation is allowed.</p>
             <pre class="brush: js">
-            myApp.directive('directiveName', function(dep1, dep2) {
+            myApp.directive('myDirective', function(dep1, dep2) {
               return {
                 replace: true,
                 restrict: 'EACM',
@@ -956,8 +956,58 @@ weatherApp.config(function ($httpProvider) {
 
     <section class="slide">
         <div>
-            <h2></h2>
+            <h2>End to end test (e2e)</h2>
+            <pre class="brush: js">
+            describe('Weather E2E Test', function() {
 
+                it('should navigate to start page', function(){
+                    browser().navigateTo('/');
+                });
+
+                it('should enter City', function(){
+                    input('search.city').enter('Oslo');
+                });
+            });
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>End to end test karma config</h2>
+            <p><code>karma start weather-e2e.conf.js></code></p>
+            <pre class="brush: js">
+            files = [
+                ANGULAR_SCENARIO,
+                ANGULAR_SCENARIO_ADAPTER,
+                /* E2E Test*/
+                '../test/e2e/weather-e2e-test.js'
+            ];
+
+            // CI:
+            singleRun = true;
+            autoWatch = false;
+            browsers = ['PhantomJS'];
+
+            // Local:
+            //autoWatch = true;
+            //singleRun = false;
+            //browsers = ['Chrome'];
+
+            urlRoot = '/__karma/';
+
+            proxies = {
+                '/':'http://localhost:30000/'
+            };
+            </pre>
+
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Tasks</h2>
+            <p><a href="https://github.com/kozmic/angularjs-workshop">https://github.com/kozmic/angularjs-workshop</a></p>
         </div>
     </section>
 
