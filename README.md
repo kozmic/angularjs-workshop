@@ -71,3 +71,6 @@ Create an Hello World AngularJS application.
 
 ### 12. Route resolve (think GMail)
 1. When switching between the routes "today" and "weekly", try to utilize the "resolve" functionality to only switch to new route when the target data is fetched from openweathermap (or display error in current route if data fetching fails).
+
+### 13. Add a loader interceptor
+1. Show a loader when there are pending HTTP requests so the user get visual feedback.
