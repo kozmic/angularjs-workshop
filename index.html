@@ -831,7 +831,7 @@
 
                   scope = $rootScope.$new();
                   scope.search = { city: defaultCity };
-                  ctrl = $controller(PhoneListCtrl, {$scope: scope});
+                  ctrl = $controller("WeatherController", {$scope: scope});
 
                   httpBackend.flush();
                 }));
