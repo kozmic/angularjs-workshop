@@ -588,7 +588,7 @@
             <p>DateFormatter directive:</p>
 			<pre class="brush: js">
 				// Example usage:  &lt;p class="DateFormatter" data-dato="{{myDate}}" />
-				.directive('DateFormatter', function(DateUtilService) {
+				weatherApp.directive('DateFormatter', function(DateUtilService) {
 					return {
 						replace: false
 						restrict: 'C',
@@ -907,6 +907,7 @@ weatherApp.config(function ($httpProvider) {
     <section class="slide">
         <div>
             <h2>Routes</h2>
+            <p>Loads partials into <code>&lt;ng-view/></code>.</p>
             <pre class="brush: js">
                 angular.module('myRoutes',[]).config(function($routeProvider, $locationProvider) {
                   $routeProvider
