@@ -439,7 +439,7 @@
                            ng-model="weather.city"
                            ng-required="true">
 
-                    &lt;span ng-show="weatherForm.$errors.city.required">Required&lt;/span>
+                    &lt;span ng-show="weatherForm.city.$error.required">Required&lt;/span>
 
                     &lt;input type="radio" ng-model="weather.unit" value="celcius"/> Celcius
                     &lt;input type="radio" ng-model="weather.unit" value="fahrenheit"/> Fahrenheit
